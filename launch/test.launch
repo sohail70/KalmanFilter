@@ -1,0 +1,38 @@
+<!--  Launch file for signle robot on Gazebo -->
+<launch>
+
+<include file="$(find gazebo_ros)/launch/empty_world.launch">
+<arg name="use_sim_time" value="true"/>
+<arg name="debug" value="false"/>
+<arg name="world_name" value="$(find kf_unit_three)/include/Worlds/wall2.world.xml"/>
+</include>
+
+
+
+
+<!--group ns="/robot_1"-->
+<include file="$(find kf_unit_three)/include/robot.launch.xml">
+<arg name="robot_name" value="robot_1"/>
+<arg name="init_pose" value="-x 0.0 -y -0.0 -z 0.0"/>
+</include>
+<!-- ******************************************************* -->
+
+<node pkg="kf_unit_three" type="noisy_odom" name="noisy_odom_node" output="screen">
+
+</node>
+
+
+<node pkg="kf_unit_three" type="laser_ray_localization" name="ray_localization_node" output="screen">
+
+</node>
+
+
+<node pkg="kf_unit_three" type="kalman_filter" name="kalman_filter_node" output="screen">
+
+</node>
+
+
+</launch>
+
+
+
